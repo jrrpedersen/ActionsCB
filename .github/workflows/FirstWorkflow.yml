@@ -1,0 +1,19 @@
+# a workflow to play around with the editor
+name: First Workflow
+on: 
+  push:
+    branches:
+      -main
+  workflow_dispatch:
+
+jobs:
+  first_job:
+    name: First job
+    runs-on: ubuntu-latest # runner
+    - run: |
+          echo "Hello ${{ vars.WHO_TO_GREET }} 👋 from ${{ github.actor }}." 
+          echo "My secret is 🤫 ${{ secrets.MY_SECRET }}."
+          echo "Current branch is '${{ github.ref }}'."
+    - name: Checkout
+      uses: actions/checkout@v4.1.0 
+    - run: tree #display the files in repository after checking them out
